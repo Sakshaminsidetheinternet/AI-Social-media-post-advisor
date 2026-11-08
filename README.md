@@ -1,25 +1,64 @@
-AI Social Media Post Advisor
+# AI Social Media Post Advisor
 
-Have you ever felt confused about whether you should upload a post or not—on Instagram or as a WhatsApp status?
-Questions like:
-Do I look good in this picture?
--Does it look relevant?
--Am I revealing any personal details unintentionally?
--To solve this, I am building an AI Social Media Post Advisor.
+An experimental image-review assistant that explores whether a photo is suitable to share on a selected social platform, with attention to image quality and visible privacy risks.
 
-This tool helps users decide whether they should post an image on a specific platform. You upload your picture and select the platform you are considering (e.g., Instagram or WhatsApp). The AI analyzes the image, extracts visual features, checks the background, lighting conditions, clothing, and potential privacy concerns.
+## Project idea
 
-Based on the analysis, the AI provides suggestions such as:
--You can post the image directly
--Apply an Instagram warm filter at 60% (if Instagram is selected)
--Avoid uploading the image because the background is not suitable
--Warning if sensitive or personal details are visible
+Before posting a photo, a user may want to check its composition, lighting, relevance and whether it accidentally reveals personal information. This project explores an AI-assisted workflow for reviewing an image before publication.
 
-Development Stages
+## Intended workflow
 
-Level 1 (MVP)
-    Day 1
-    -Image upload API
-    -Platform selection
-    -Structured response
-    -Built using FastAPI
+1. Upload an image.
+2. Select the intended social platform.
+3. Analyse available image signals.
+4. Return structured suggestions about image quality and potential privacy concerns.
+
+The original project description mentions possible recommendations such as improving lighting or checking for sensitive information in the background. These are goals of the concept, not a guarantee that every type of analysis is implemented.
+
+## Technology visible in the repository
+
+- Python
+- FastAPI
+- OpenCV / Haar cascade assets
+- Modular `analyzer/` package
+
+## Repository structure
+
+```text
+AI-Social-media-post-advisor/
+├── analyzer/
+│   ├── face.py
+│   ├── platform.py
+│   └── quality.py
+├── main.py
+├── requirements.txt
+└── haarcascade_frontalface_default.xml
+```
+
+## Run locally
+
+```bash
+git clone https://github.com/Sakshaminsidetheinternet/AI-Social-media-post-advisor.git
+cd AI-Social-media-post-advisor
+python -m venv .venv
+# Linux / macOS
+source .venv/bin/activate
+# Windows PowerShell
+# .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+If the application entry point differs in your local version, check `main.py` for the FastAPI instance name and use it in the Uvicorn command.
+
+## Demo and screenshots
+
+No verified public deployment URL or screenshots are currently included. Run locally and capture the upload and result screens before adding screenshots to this README.
+
+## Current scope and limitations
+
+The repository currently looks like an early-stage prototype. Some analyzer modules are empty or incomplete in the inspected tree, so do not assume the full image-analysis workflow is implemented. Image analysis can miss private information; users should manually inspect photos before posting. Avoid uploading sensitive images to services unless their privacy terms are understood.
+
+## Author
+
+**Saksham Gupta** — [GitHub](https://github.com/Sakshaminsidetheinternet)
